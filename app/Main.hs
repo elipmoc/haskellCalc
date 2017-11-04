@@ -1,8 +1,13 @@
 module Main where
 
-import Lib
+solveRPN :: String -> Double
+solveRPN =head . foldl foldingFunction [] . words
+    where 
+        foldingFunction (x:y:ys) "*" = (y*x):ys
+        foldingFunction (x:y:ys) "+" = (y+x):ys
+        foldingFunction (x:y:ys) "-" = (y-x):ys
+        foldingFunction xs numberString = read numberString:xs
 
 main :: IO ()
 main = do 
-    print "HelloWorld"
-    putStrLn $ show 45
+    solveRPN <$> getLine >>= print
