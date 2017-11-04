@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2017-11-04 08:11:28.4838982 UTC
+2017-11-04 13:32:41.9581855 UTC
 
 interface main@main:Main 8002
-  interface hash: 9cd1cd014383c2e655fbcad324096780
+  interface hash: 5e78a44640c8ac2acb267a010e5540f0
   ABI hash: d16877064c4d615c4d291e81203e91c3
   export-list hash: aea2286fcc2241232da68834edfe9dae
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
@@ -35,6 +35,7 @@ import  -/  base-4.9.1.0:GHC.Real b88ae4a48c079652623073a5bbf5c9b0
 import  -/  base-4.9.1.0:Prelude 74b3e204395920329f6de9d97206abe9
 import  -/  base-4.9.1.0:System.IO 5daf3f384209c11d9566e3409af8ec5d
 import  -/  base-4.9.1.0:Text.Read 3cc85705eeac93ec93da7f5edfd7bc15
+import  -/  ghc-prim-0.5.0.0:GHC.Classes 16d48e012d23eaef9bca91ccdd572c02
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
 d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule :: GHC.Types.Module

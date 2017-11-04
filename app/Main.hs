@@ -7,13 +7,17 @@ readMaybe st = case reads st of [(x,"")] -> Just x
                                 _ -> Nothing
 
 foldingFunction :: [Double] -> String -> Maybe [Double]
-foldingFunction (x:y:ys) "*" = return $ (y*x):ys
-foldingFunction (x:y:ys) "/" = return $ (y/x):ys
-foldingFunction (x:y:ys) "mul" = return $ (y*x):ys
-foldingFunction (x:y:ys) "div" = return $ (y/x):ys
-foldingFunction (x:y:ys) "+" = return $ (y+x):ys
-foldingFunction (x:y:ys) "-" = return $ (y-x):ys
-foldingFunction xs numberString = liftM (:xs) (readMaybe numberString)
+foldingFunction (x:y:ys) op =return $ (case op of
+                                    "*" -> y*x
+                                    "/" -> y/x
+                                    "mul" -> y*x
+                                    "div" -> y/x
+                                    "+" -> y+x
+                                    "-" -> y-x
+                                    "max" -> max y x
+                                    "min" -> min y x
+                                    ):ys
+foldingFunction xs numberString = (:xs) <$> (readMaybe numberString)
 
 solveRPN :: String -> Maybe Double
 solveRPN st =do 
