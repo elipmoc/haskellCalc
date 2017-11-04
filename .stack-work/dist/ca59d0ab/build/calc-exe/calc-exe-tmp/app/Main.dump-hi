@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-11-04 07:07:09.7493584 UTC
+2017-11-04 07:41:58.382896 UTC
 
 interface main@main:Main 8002
-  interface hash: 33a547870d5357a14324300647f8f611
-  ABI hash: c9b4c1eb678307857ea14589b4182764
-  export-list hash: cd83069538204cad9ed5b0427923a62b
+  interface hash: cc94a7ee6ef0d19c08bcf9640bd6211d
+  ABI hash: 6821522689577d73d6880f08045d4345
+  export-list hash: f0e24799340fde821c48be27f1658ffc
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 956e38a2cb7097b9218b9b1e53d30d64
   sig of: Nothing
@@ -13,6 +13,7 @@ interface main@main:Main 8002
   where
 exports:
   Main.main
+  Main.readMayby
   Main.solveRPN
 module dependencies:
 package dependencies: base-4.9.1.0* ghc-prim-0.5.0.0
@@ -29,6 +30,7 @@ import  -/  base-4.9.1.0:Data.OldList c9282ee91951bdcbd918d2960562c007
 import  -/  base-4.9.1.0:GHC.Base 4caea1123ecf4b46e27cbccd6d279377
 import  -/  base-4.9.1.0:GHC.List d11eb227c1c6fbfd89bb781d72eaea0d
 import  -/  base-4.9.1.0:GHC.Num 38b8aac8807c096c7f3ca3c1eff02939
+import  -/  base-4.9.1.0:GHC.Read 823163de9fa29f31f251382abc171b2b
 import  -/  base-4.9.1.0:GHC.Real b88ae4a48c079652623073a5bbf5c9b0
 import  -/  base-4.9.1.0:Prelude 74b3e204395920329f6de9d97206abe9
 import  -/  base-4.9.1.0:System.IO 5daf3f384209c11d9566e3409af8ec5d
@@ -99,6 +101,26 @@ bba9d9b435c62711899e59636fa54415
      Unfolding: (GHC.TopHandler.runMainIO1
                    @ ()
                    Main.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R))) -}
+63e0f67d0acb0a168f5e8da78db31ed4
+  readMayby :: GHC.Read.Read a => GHC.Base.String -> GHC.Base.Maybe a
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(C(C(S))LLL),1*U(1*C1(C1(U)),A,A,A)><L,U>,
+     Unfolding: (\ @ a
+                   ($dRead :: GHC.Read.Read a)
+                   (st :: GHC.Base.String) ->
+                 case GHC.Read.readsPrec
+                        @ a
+                        $dRead
+                        Text.ParserCombinators.ReadPrec.minPrec
+                        st of wild {
+                   [] -> GHC.Base.Nothing @ a
+                   : ds ds1
+                   -> case ds of wild1 { (,) x ds2 ->
+                      case ds2 of wild2 {
+                        []
+                        -> case ds1 of wild3 {
+                             [] -> GHC.Base.Just @ a x : ipv ipv1 -> GHC.Base.Nothing @ a }
+                        : ipv ipv1 -> GHC.Base.Nothing @ a } } }) -}
 82ba53e9bcbc84c83e5437e86bc32d6e
   solveRPN :: GHC.Base.String -> GHC.Types.Double
   {- Arity: 1, Strictness: <S,1*U>,

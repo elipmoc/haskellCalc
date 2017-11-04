@@ -1,5 +1,9 @@
 module Main where
 
+readMaybe :: (Read a) => String -> Maybe a
+readMaybe st = case reads st of [(x,"")] -> Just x
+                                _ -> Nothing
+
 solveRPN :: String -> Double
 solveRPN =head . foldl foldingFunction [] . words
     where 
