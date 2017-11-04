@@ -1,19 +1,21 @@
 
 ==================== FINAL INTERFACE ====================
-2017-11-04 13:32:41.9581855 UTC
+2017-11-04 15:03:25.5211281 UTC
 
 interface main@main:Main 8002
-  interface hash: 5e78a44640c8ac2acb267a010e5540f0
-  ABI hash: d16877064c4d615c4d291e81203e91c3
-  export-list hash: aea2286fcc2241232da68834edfe9dae
+  interface hash: 9a05da414eeddecbea4d5b9b6e2ddeb4
+  ABI hash: 36f848c5a39ecc07cdcf0d0783cecbf0
+  export-list hash: 2f7d06395d2fbd07eb8c1096ff051fd4
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 956e38a2cb7097b9218b9b1e53d30d64
   sig of: Nothing
   used TH splices: False
   where
 exports:
+  Main.binaryExpr
   Main.foldingFunction
   Main.main
+  Main.next
   Main.readMaybe
   Main.solveRPN
 module dependencies:
@@ -49,11 +51,76 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-7f40b5a4eee9921a1a578b7f82f0b831
+47e755c16b514d1756e19f67dbdc3819
+  binaryExpr ::
+    GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Base.String
+    -> GHC.Base.Maybe GHC.Types.Double
+  {- Arity: 3, Strictness: <L,1*U(U)><L,1*U(U)><S,U> -}
+bb568e73cace0edf245f08cbf7996a09
   foldingFunction ::
     [GHC.Types.Double]
     -> GHC.Base.String -> GHC.Base.Maybe [GHC.Types.Double]
-  {- Arity: 2, Strictness: <S,U><L,U> -}
+  {- Arity: 2, Strictness: <S,U><L,U>,
+     Unfolding: (\ (s :: [GHC.Types.Double]) (op :: GHC.Base.String) ->
+                 let {
+                   fail :: GHC.Prim.Void# -> GHC.Base.Maybe [GHC.Types.Double]
+                     {- Arity: 1, Strictness: <L,A> -}
+                   = \ (ds :: GHC.Prim.Void#)[OneShot] ->
+                     case Text.ParserCombinators.ReadP.run
+                            @ GHC.Types.Double
+                            Main.foldingFunction1
+                            op of wild {
+                       [] -> GHC.Base.Nothing @ [GHC.Types.Double]
+                       : ds1 ds2
+                       -> case ds1 of wild1 { (,) x ds3 ->
+                          case ds3 of wild2 {
+                            []
+                            -> case ds2 of wild3 {
+                                 []
+                                 -> GHC.Base.Just
+                                      @ [GHC.Types.Double]
+                                      (GHC.Types.: @ GHC.Types.Double x s)
+                                 : ipv ipv1 -> GHC.Base.Nothing @ [GHC.Types.Double] }
+                            : ipv ipv1 -> GHC.Base.Nothing @ [GHC.Types.Double] } } }
+                 } in
+                 case s of wild {
+                   [] -> fail GHC.Prim.void#
+                   : x ds
+                   -> case ds of wild1 {
+                        [] -> fail GHC.Prim.void#
+                        : y ys
+                        -> case Main.binaryExpr x y op of wild2 {
+                             GHC.Base.Nothing
+                             -> case Text.ParserCombinators.ReadP.run
+                                       @ GHC.Types.Double
+                                       Main.foldingFunction1
+                                       op of wild3 {
+                                  [] -> GHC.Base.Nothing @ [GHC.Types.Double]
+                                  : ds1 ds2
+                                  -> case ds1 of wild4 { (,) x1 ds3 ->
+                                     case ds3 of wild5 {
+                                       []
+                                       -> case ds2 of wild6 {
+                                            []
+                                            -> GHC.Base.Just
+                                                 @ [GHC.Types.Double]
+                                                 (GHC.Types.: @ GHC.Types.Double x1 wild)
+                                            : ipv ipv1 -> GHC.Base.Nothing @ [GHC.Types.Double] }
+                                       : ipv ipv1 -> GHC.Base.Nothing @ [GHC.Types.Double] } } }
+                             GHC.Base.Just x1
+                             -> GHC.Base.Just
+                                  @ [GHC.Types.Double]
+                                  (GHC.Types.: @ GHC.Types.Double x1 ys) } } }) -}
+023fa77106adb38b187da5f42644c87d
+  foldingFunction1 :: Text.ParserCombinators.ReadP.P GHC.Types.Double
+  {- Unfolding: (GHC.Read.$fReadDouble9
+                   GHC.Read.$fReadDouble_$sconvertFrac
+                   Text.ParserCombinators.ReadPrec.minPrec
+                   @ GHC.Types.Double
+                   (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
+                      @ GHC.Types.Double)) -}
 c159daa01566f24c3f208ac04ada6bf8
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
@@ -111,6 +178,13 @@ d86e41772406467b3b2dfcda9a262f9d
     [[GHC.Types.Char]]
     -> [GHC.Types.Double] -> GHC.Base.Maybe [GHC.Types.Double]
   {- Arity: 2, Strictness: <S,1*U><L,U> -}
+c38709080abc7545a10aa5f3db6c8b9a
+  next :: GHC.Base.Maybe a -> GHC.Base.Maybe a -> GHC.Base.Maybe a
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ @ a (ds :: GHC.Base.Maybe a) (b :: GHC.Base.Maybe a) ->
+                 case ds of wild {
+                   GHC.Base.Nothing -> b GHC.Base.Just ipv -> wild }) -}
 f752d2d339340b3cf13b276cefb31f5f
   readMaybe :: GHC.Read.Read a => GHC.Base.String -> GHC.Base.Maybe a
   {- Arity: 2, HasNoCafRefs,
@@ -131,14 +205,6 @@ f752d2d339340b3cf13b276cefb31f5f
                         -> case ds1 of wild3 {
                              [] -> GHC.Base.Just @ a x : ipv ipv1 -> GHC.Base.Nothing @ a }
                         : ipv ipv1 -> GHC.Base.Nothing @ a } } }) -}
-64e013450d8ab1ac9aab47fac0cca065
-  readMaybe1 :: Text.ParserCombinators.ReadP.P GHC.Types.Double
-  {- Unfolding: (GHC.Read.$fReadDouble9
-                   GHC.Read.$fReadDouble_$sconvertFrac
-                   Text.ParserCombinators.ReadPrec.minPrec
-                   @ GHC.Types.Double
-                   (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
-                      @ GHC.Types.Double)) -}
 30f93ba504524f4c3d05a81b26cffccf
   solveRPN :: GHC.Base.String -> GHC.Base.Maybe GHC.Types.Double
   {- Arity: 1, Strictness: <S,1*U>,

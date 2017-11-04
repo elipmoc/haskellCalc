@@ -6,18 +6,26 @@ readMaybe :: (Read a) => String -> Maybe a
 readMaybe st = case reads st of [(x,"")] -> Just x
                                 _ -> Nothing
 
+binaryExpr :: Double -> Double -> String -> Maybe Double
+binaryExpr x y op = 
+    case op of
+        "*" -> return $ y*x
+        "/" -> return $ y/x
+        "mul" -> return $ y*x
+        "div" -> return $ y/x
+        "+" -> return $ y+x
+        "-" -> return $ y-x
+        "max" -> return $ max y x
+        "min" -> return $ min y x
+        _ -> Nothing
+
+next::Maybe a -> Maybe a -> Maybe a
+next Nothing b = b
+next a _ = a
+
 foldingFunction :: [Double] -> String -> Maybe [Double]
-foldingFunction (x:y:ys) op =return $ (case op of
-                                    "*" -> y*x
-                                    "/" -> y/x
-                                    "mul" -> y*x
-                                    "div" -> y/x
-                                    "+" -> y+x
-                                    "-" -> y-x
-                                    "max" -> max y x
-                                    "min" -> min y x
-                                    ):ys
-foldingFunction xs numberString = (:xs) <$> (readMaybe numberString)
+foldingFunction s@(x:y:ys) op = next ((:ys) <$> binaryExpr x y op) ((:s) <$> readMaybe op)
+foldingFunction xs numberString = (:xs) <$> readMaybe numberString
 
 solveRPN :: String -> Maybe Double
 solveRPN st =do 
