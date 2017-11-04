@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2017-11-04 06:59:45.7704138 UTC
+2017-11-04 07:04:33.3766095 UTC
 
 interface main@main:Main 8002
-  interface hash: 09c3ded07e639dab1580103e4499b772
-  ABI hash: a489cfbb1ef4d75b0db61947250da836
+  interface hash: 33a547870d5357a14324300647f8f611
+  ABI hash: c9b4c1eb678307857ea14589b4182764
   export-list hash: cd83069538204cad9ed5b0427923a62b
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 956e38a2cb7097b9218b9b1e53d30d64
@@ -29,6 +29,7 @@ import  -/  base-4.9.1.0:Data.OldList c9282ee91951bdcbd918d2960562c007
 import  -/  base-4.9.1.0:GHC.Base 4caea1123ecf4b46e27cbccd6d279377
 import  -/  base-4.9.1.0:GHC.List d11eb227c1c6fbfd89bb781d72eaea0d
 import  -/  base-4.9.1.0:GHC.Num 38b8aac8807c096c7f3ca3c1eff02939
+import  -/  base-4.9.1.0:GHC.Real b88ae4a48c079652623073a5bbf5c9b0
 import  -/  base-4.9.1.0:Prelude 74b3e204395920329f6de9d97206abe9
 import  -/  base-4.9.1.0:System.IO 5daf3f384209c11d9566e3409af8ec5d
 import  -/  base-4.9.1.0:Text.Read 3cc85705eeac93ec93da7f5edfd7bc15
@@ -45,42 +46,70 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-d9c0dee8a685c5ed422401aaa63f23bf
+bba9d9b435c62711899e59636fa54415
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Main.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-01d62c2c484918d4b5d94b688c90c90e
+97e81a1000597aaff118800608219e86
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 1, Strictness: <S,U> -}
-1033d79446b09fbb5ef88af3224e93f4
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case GHC.IO.Handle.Internals.wantReadableHandle_1
+                        @ GHC.Base.String
+                        GHC.IO.Handle.Text.hGetLine4
+                        GHC.IO.Handle.FD.stdin
+                        GHC.IO.Handle.Text.hGetLine2
+                          `cast`
+                        (<GHC.IO.Handle.Types.Handle__>_R
+                         ->_R Sym (GHC.Types.N:IO[0] <GHC.Base.String>_R))
+                        s of ds { (#,#) ipv ipv1 ->
+                 GHC.IO.Handle.Text.hPutStr2
+                   GHC.IO.Handle.FD.stdout
+                   (case Data.OldList.wordsFB
+                           @ ([GHC.Types.Double] -> [GHC.Types.Double])
+                           Main.main2
+                           (GHC.Base.id @ [GHC.Types.Double])
+                           ipv1
+                           (GHC.Types.[] @ GHC.Types.Double) of wild {
+                      [] -> case GHC.List.badHead ret_ty GHC.Base.String of {}
+                      : x ds1
+                      -> case x of ww { GHC.Types.D# ww1 ->
+                         GHC.Float.$w$sshowSignedFloat
+                           GHC.Float.$fShowDouble_$sshowFloat
+                           GHC.Show.shows22
+                           ww1
+                           (GHC.Types.[] @ GHC.Types.Char) } })
+                   GHC.Types.True
+                   ipv }) -}
+19fc436f272bffe6818875eec5149892
   main2 ::
+    [GHC.Types.Char]
+    -> ([GHC.Types.Double] -> [GHC.Types.Double])
+    -> [GHC.Types.Double]
+    -> [GHC.Types.Double]
+  {- Arity: 3 -}
+78e854510dd7dae98604847530920e45
+  main3 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 1,
      Unfolding: (GHC.TopHandler.runMainIO1
                    @ ()
                    Main.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R))) -}
-dadd7fe075eeafbd55038035105880c2
+82ba53e9bcbc84c83e5437e86bc32d6e
   solveRPN :: GHC.Base.String -> GHC.Types.Double
   {- Arity: 1, Strictness: <S,1*U>,
      Unfolding: (\ (x :: GHC.Base.String) ->
                  case Data.OldList.wordsFB
                         @ ([GHC.Types.Double] -> [GHC.Types.Double])
-                        Main.solveRPN1
+                        Main.main2
                         (GHC.Base.id @ [GHC.Types.Double])
                         x
                         (GHC.Types.[] @ GHC.Types.Double) of wild {
                    [] -> GHC.List.badHead @ GHC.Types.Double : x1 ds1 -> x1 }) -}
-644a0938571263d443f2bd8c557725be
-  solveRPN1 ::
-    [GHC.Types.Char]
-    -> ([GHC.Types.Double] -> [GHC.Types.Double])
-    -> [GHC.Types.Double]
-    -> [GHC.Types.Double]
-  {- Arity: 3 -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:
