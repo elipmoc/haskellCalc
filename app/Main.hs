@@ -1,6 +1,7 @@
 module Main where
 
 import Control.Monad
+import Control.Applicative
 
 readMaybe :: (Read a) => String -> Maybe a
 readMaybe st = case reads st of [(x,"")] -> Just x
@@ -19,12 +20,8 @@ binaryExpr x y op =
         "min" -> return $ min y x
         _ -> Nothing
 
-next::Maybe a -> Maybe a -> Maybe a
-next Nothing b = b
-next a _ = a
-
 foldingFunction :: [Double] -> String -> Maybe [Double]
-foldingFunction s@(x:y:ys) op = next ((:ys) <$> binaryExpr x y op) ((:s) <$> readMaybe op)
+foldingFunction s@(x:y:ys) op = ((:ys) <$> binaryExpr x y op) <|> ((:s) <$> readMaybe op)
 foldingFunction xs numberString = (:xs) <$> readMaybe numberString
 
 solveRPN :: String -> Maybe Double
